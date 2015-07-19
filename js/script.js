@@ -4,13 +4,14 @@ $(document).ready(function() {
 
 // Player Moves
 
+// awesome to see OOJS solution!
 var playerMoves = {
     twoCards: [],
     choosenTwo: [],
     cardCounter: null,
     cardSelect: $('.card').on('click', function(event) {
         event.preventDefault()
-        playerMoves.twoCards.unshift(event.target.id)
+        playerMoves.twoCards.unshift(event.target.id) // use this instead of playerMoves when possible
         playerMoves.reveal(event.target)
     }),
 
@@ -30,12 +31,13 @@ var playerMoves = {
 
             //"flips" over card
             $(event).addClass(clickedCard)
-            playerMoves.choosenTwo.push(clickedCard)
+            playerMoves.choosenTwo.push(clickedCard) // clicking twice quickly on a card pushes the same card in and identifies as a match!
+	    // maybe you could check uniqueness or remove the event listener after clicking once on the card.
             playerMoves.cardCounter++
                 playerMoves.match(playerMoves.choosenTwo)
         } else {
             playerMoves.cardCounter = 0
-            $("div").removeClass(playerMoves.choosenTwo[0])
+            $("div").removeClass(playerMoves.choosenTwo[0]) // is there a more specific selector than div you could use here?
             $("div").removeClass(playerMoves.choosenTwo[1])
             playerMoves.choosenTwo = []
         }
@@ -69,9 +71,11 @@ var gamePlay = {
     start: function() {
         gamePlay.arrangeBoard()
             // alert("Select two cards untill you've matched them all!")
+	    // please remove commented out code before submitting in the future.
     },
 
     // Card Deck
+    // awesome!!! this makes it very easy to add more cards if you wanted to
     cardDeck1: ["android",
         "angular",
         "js",
@@ -91,6 +95,7 @@ var gamePlay = {
         "debian",
         "diaspora"
     ],
+
 
     fullBoard: [],
     shuffledBoard: [],
@@ -149,6 +154,11 @@ var gamePlay = {
         $("#r4c7").append(gamePlay.shuffledBoard[33])
         $("#r4c8").append(gamePlay.shuffledBoard[34])
         $("#r4c9").append(gamePlay.shuffledBoard[35])
+
+	//or
+	// $(".card").each(function(card, index){
+	//  $(this).append( gamePlay.shuffledBoard[index] )
+	// })
     }
 }
 
@@ -166,3 +176,9 @@ var buttons = {
     })
 
 }
+
+// Overall
+// Awesome solution!! I really like how you solved this with an Object oriented solution.
+// I would encourage you to think about ways that you could build the HTML using JavaScript,
+// or define the content exclusively in the HTML. i.e. you only want to have to go to one
+// place to add more cards.
